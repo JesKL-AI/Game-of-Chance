@@ -34,16 +34,17 @@ public class Main
 		if (guess==num)
 		{
 			System.out.println("Congratulations, you guessed correcty!");
-			money=calculateWinnings(num);
-			System.out.println("You have won: "+money+"\n");
+			int profit = calculateWinnings(num,betMoney);
+			money+=profit;
+			System.out.println("You have won: "+profit+"\n");
 		}else
 		{
 			System.out.println("Better luck next time!");
 			System.out.println("The number was "+num);
 			money-=betMoney;
-			System.out.println("Your balance: "+money+"\n");
 		}
 		
+		System.out.println("Your balance: "+money);
 		if(money<=0)
 		{
 			System.out.println("GAME OVER!");
@@ -84,31 +85,31 @@ public class Main
 	
 	// Checks if the argument is prime.
 	
-	private static int calculateWinnings(int num)
+	private static int calculateWinnings(int num, int betMoney)
 	{
 		
 		
 		if (num%2==0)
 		{
 			System.out.println("x2 - Even number");
-			money*=2;
+			betMoney*=2;
 		}
 		if (num%10==0)
 		{
 			System.out.println("x3 - Multiple of ten");
-			money*=3;
+			betMoney*=3;
 		}
 		if (num<5)
 		{
 			System.out.println("x2 - below 5");
-			money*=2;
+			betMoney*=2;
 		}
 		if (isPrime(num))
 		{
 			System.out.println("x5 - prime number");
-			money*=5;
+			betMoney*=5;
 		}
-		return money;
+		return betMoney;
 	}
 	
 	// Calculates the winnings that the user gets. Takes in the number the dice rolled to check conditions for any bonuses.
